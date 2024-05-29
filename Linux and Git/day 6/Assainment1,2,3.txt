@@ -1,0 +1,77 @@
+Assignment 1: Ensure the script checks if a specific file (e.g., myfile.txt) exists in the current directory. If it 
+exists, print "File exists", otherwise print "File not found".
+
+sirisha@DESKTOP-R0R2B2A:~$ # File name to check                                                                                                                                                                   
+sirisha@DESKTOP-R0R2B2A:~$ file="movies.txt"                                                                                                                                                                      
+sirisha@DESKTOP-R0R2B2A:~$                                                                                                                                                                                         
+sirisha@DESKTOP-R0R2B2A:~$ # Check if the file exists                                                                                                                                                              
+sirisha@DESKTOP-R0R2B2A:~$ if [ -e "$file" ]; then                                                                                                                                                                 
+>   echo "File exists" 
+> else                                                                                                                                                                                                            
+>   echo "File not found"                                                                                                                                                                                          
+> fi                                                                                                                                                                                                              
+ File exists   
+
+
+Assignment 2: Write a script that reads numbers from the user until they enter '0'. The script should also 
+print whether each number is odd or even.
+
+sirisha@DESKTOP-R0R2B2A:~$ # Function to check if a number is odd or even                                                                                                                                          
+sirisha@DESKTOP-R0R2B2A:~$ check_odd_even() {                                                                                                                                                                     
+ >   if [ $(( $1 % 2 )) -eq 0 ]; then                                                                                                                                                                               
+>     echo "$1 is even"                                                                                                                                                                                            
+>   else                                                                                                                                                                                                           
+>     echo "$1 is odd"                                                                                                                                                                                             
+>   fi                                                                                                                                                                                                             
+> }                    
+sirisha@DESKTOP-R0R2B2A:~$ # Loop to read numbers from the user                                                                                                                                                    
+sirisha@DESKTOP-R0R2B2A:~$ while true; do                                                                                                                                                                          
+>   echo -n "Enter a number (0 to quit): "                                                                                                                                                                         
+>   read number                                                                                                                                                                                                    
+>   if [ "$number" -eq 0 ]; then                                                                                                                                                                                   
+>     echo "Exiting..."                                                                                                                                                                                            
+>     break                                                                                                                                                                                                        
+>   fi                                                                                                                                                                                                             
+>   check_odd_even "$number"                                                                                                                                                                                       
+> done                                                                                                                                                                                                             
+Enter a number (0 to quit): 1                                                                                                                                                                                      
+1 is odd                                                                                                                                                                                                           
+Enter a number (0 to quit): 5                                                                                                                                                                                      
+5 is odd                                                                                                                                                                                                           
+Enter a number (0 to quit): 8                                                                                                                                                                                      
+8 is even                                                                                                                                                                                                          
+Enter a number (0 to quit): 4                                                                                                                                                                                      
+4 is even                                                                                                                                                                                                          
+Enter a number (0 to quit): 7                                                                                                                                                                                      
+7 is odd                                                                                                                                                                                                           
+Enter a number (0 to quit): 0                                                                                                                                                                                      
+Exiting...   
+
+
+
+Assignment 3: Create a function that takes a filename as an argument and prints the number of lines in the file.
+Call this function from your script with different filenames.
+
+
+
+sirisha@DESKTOP-R0R2B2A:~$ # Function to count the number of lines in a file                                                                                                                                       
+sirisha@DESKTOP-R0R2B2A:~$ count_lines() {                                                                                                                                                                         
+>   local filename=$1                                                                                                                                                                                              
+>                                                                                                                                                                                                                  
+>   if [ -f "$filename" ]; then                                                                                                                                                                                    
+>     local line_count=$(wc -l < "$filename")                                                                                                                                                                      
+>     echo "The file '$filename' has $line_count lines."                                                                                                                                                           
+>   else                                                                                                                                                                                                           
+>     echo "The file '$filename' does not exist."                                                                                                                                                                  
+>   fi                                                                                                                                                                                                             
+> }                                                                                                                                                                                                                
+sirisha@DESKTOP-R0R2B2A:~$ # Call the function with different filenames                                                                                                                                            
+sirisha@DESKTOP-R0R2B2A:~$ count_lines "test.txt"                                                                                                                                                                  
+The file 'test.txt' has 1 lines.                                                                                                                                                                                   
+sirisha@DESKTOP-R0R2B2A:~$ count_lines "test4.txt"                                                                                                                                                                 
+The file 'test4.txt' has 1 lines.                                                                                                                                                                                 
+ sirisha@DESKTOP-R0R2B2A:~$ count_lines "text3.txt"                                                                                                                                                                 
+The file 'text3.txt' does not exist. 
+
+
+                         

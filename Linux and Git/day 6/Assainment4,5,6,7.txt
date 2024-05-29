@@ -1,0 +1,172 @@
+Assignment 4: Write a script that creates a directory named TestDir and inside it, creates ten files named File1.txt, 
+File2.txt, ... File10.txt. Each file should contain its filename as its content (e.g., File1.txt contains "File1.txt").
+ 
+
+sirisha@DESKTOP-R0R2B2A:~$ # Create a directory named TestDirOld                                                        
+sirisha@DESKTOP-R0R2B2A:~$ mkdir -p TestDirOld                                                                          
+sirisha@DESKTOP-R0R2B2A:~$                                                                                              
+sirisha@DESKTOP-R0R2B2A:~$ # Change to the TestDirOld directory                                                         
+sirisha@DESKTOP-R0R2B2A:~$ cd TestDirOld                                                                                
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$ # Loop to create 10 files                                                         
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$ for i in {1..10}; do                                                              
+>   filename="File$i.txt"                                                                                               
+>   echo "$filename" > "$filename"                                                                                      
+> done                                                                                                                  
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$                                                                                   
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$ echo "Files created successfully in TestDirOld."                                  
+Files created successfully in TestDirOld.                                                                               
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$ cd TestDirOld/                                                                    
+-bash: cd: TestDirOld/: No such file or directory                                                                       
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$ ls                                                                               
+File1.txt  File10.txt  File2.txt  File3.txt  File4.txt  File5.txt  File6.txt  File7.txt  File8.txt  File9.txt           
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$ vi File2.txt
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$
+
+
+
+Assignment 5: Modify the script to handle errors, such as the directory already existing or lacking permissions to create files.
+Add a debugging mode that prints additional information when enabled.
+ 
+
+
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$ # Set debugging mode (0 for off, 1 for on)                                                                                                                                   
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$ DEBUG=1                                                                                                                                                                      
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$                                                                                                                                                                              
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$ # Function to print debug messages                                                                                                                                           
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$ debug() {                                                                                                                                                                    
+>   if [ $DEBUG -eq 1 ]; then                                                                                                                                                                                      
+>     echo "DEBUG: $1"                                                                                                                                                                                             
+>   fi                                                                                                                                                                                                             
+> }                                                                                                                                                                                                                
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$ # Create a directory named TestDirNew                                                                                                                                        
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$ if mkdir -p TestDirNew 2>/dev/null; then                                                                                                                                     
+>   debug "Directory 'TestDirNew' created or already exists."                                                                                                                                                      
+> else                                                                                                                                                                                                             
+>   echo "Error: Unable to create directory 'TestDirNew'. Check permissions."                                                                                                                                      
+>   exit 1                                                                                                                                                                                                         
+> fi                                                                                                                                                                                                              
+ DEBUG: Directory 'TestDirNew' created or already exists.                                                                                                                                                           
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$  # Change to the TestDirNew directory                                                                                                                                        
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld$ if cd TestDirNew; then                                                                                                                                                       
+>   debug "Changed to directory 'TestDirNew'."                                                                                                                                                                     
+> else                                                                                                                                                                                                             
+>   echo "Error: Unable to change to directory 'TestDirNew'. Check permissions."                                                                                                                                   
+>   exit 1                                                                                                                                                                                                         
+> fi                                                                                                                                                                                                               
+DEBUG: Changed to directory 'TestDirNew'.                                                                                                                                                                          
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld/TestDirNew$ # Loop to create 10 files                                                                                                                                         
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld/TestDirNew$ for i in {1..10}; do                                                                                                                                              
+>   filename="File$i.txt"                                                                                                                                                                                          
+>   if echo "$filename" > "$filename" 2>/dev/null; then                                                                                                                                                            
+>     debug "File '$filename' created with content '$filename'."                                                                                                                                                   
+>   else                                                                                                                                                                                                           
+>     echo "Error: Unable to create file '$filename'. Check permissions."                                                                                                                                          
+>     exit 1                                                                                                                                                                                                       
+>   fi                                                                                                                                                                                                             
+> done                                                                                                                                                                                                             
+DEBUG: File 'File1.txt' created with content 'File1.txt'.                                                                                                                                                          
+DEBUG: File 'File2.txt' created with content 'File2.txt'.                                                                                                                                                          
+DEBUG: File 'File3.txt' created with content 'File3.txt'.                                                                                                                                                          
+DEBUG: File 'File4.txt' created with content 'File4.txt'.                                                                                                                                                         
+DEBUG: File 'File5.txt' created with content 'File5.txt'.                                                                                                                                                          
+DEBUG: File 'File6.txt' created with content 'File6.txt'.                                                                                                                                                          
+DEBUG: File 'File7.txt' created with content 'File7.txt'.                                                                                                                                                         
+DEBUG: File 'File8.txt' created with content 'File8.txt'.                                                                                                                                                         
+DEBUG: File 'File9.txt' created with content 'File9.txt'.                                                                                                                                                          
+DEBUG: File 'File10.txt' created with content 'File10.txt'.                                                                                                                                                        
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld/TestDirNew$                                                                                                                                                                   
+sirisha@DESKTOP-R0R2B2A:~/TestDirOld/TestDirNew$ echo "Files created successfully in TestDirNew." 
+Files created successfully in TestDirNew. 
+
+
+Assignment 6: Given a sample log file, write a script using grep to extract all lines containing "ERROR". Use awk 
+to print the date, time, and error message of each extracted line.
+Data Processing with sed
+
+
+sample log file
+2024-05-24 14:32:10 INFO  Starting the service
+2024-05-24 14:33:45 ERROR  An error occurred in the service
+2024-05-24 14:35:12 INFO  Service running smoothly
+2024-05-24 14:36:05 ERROR  Another error occurred
+ 
+Use 'grep' to extract lines containing "ERROR".
+Use 'awk' to print the date, time, and error message.
+Optionally, use 'sed' for further processing if needed.
+ 
+ 
+# Check if the log file is provided as an argument
+if [ -z "$1" ]; then
+  echo "Usage: $0 <logfile>"
+  exit 1
+fi
+ 
+LOGFILE="$1"
+ 
+# Extract lines containing "ERROR" and process with awk
+grep "ERROR" "$LOGFILE" | awk '{print $1, $2, $3, $4, $5}'
+ 
+#Run the script with your log file
+./extract_errors.sh sample.log
+ 
+#Given the example log file provided, the output would be
+2024-05-24 14:33:45 ERROR An error occurred in the service
+2024-05-24 14:36:05 ERROR Another error occurred
+ 
+#This output shows the date, time, and error message for each line containing "ERROR".
+#If additional text processing is needed, sed can be incorporated. For example, to remove extra spaces in the error message:
+ 
+#!/bin/bash
+ 
+# Check if the log file is provided as an argument
+if [ -z "$1" ]; then
+  echo "Usage: $0 <logfile>"
+  exit 1
+fi
+ 
+LOGFILE="$1"
+ 
+# Extract lines containing "ERROR", process with awk, and further refine with sed
+grep "ERROR" "$LOGFILE" | awk '{print $1, $2, $3, $4, substr($0, index($0,$5))}' | sed 's/ \+/ /g'
+
+
+ 
+
+
+
+
+Assignment 7: Create a script that takes a text file and replaces all occurrences of "old_text" with "new_text". Use sed 
+to perform this operation and output the result to a new file.
+
+
+# Check if the correct number of arguments is provided
+if [ "$#" -ne 4 ]; then
+    echo "Usage: $0 input_file old_text new_text output_file"
+    exit 1
+fi
+ 
+# Assign input arguments to variables
+INPUT_FILE=$1
+OLD_TEXT=$2
+NEW_TEXT=$3
+OUTPUT_FILE=$4
+ 
+# Use sed to replace all occurrences of old_text with new_text
+sed "s/$OLD_TEXT/$NEW_TEXT/g" "$INPUT_FILE" > "$OUTPUT_FILE"
+ 
+# Print a message indicating the operation is complete
+echo "Replaced all occurrences of '$OLD_TEXT' with '$NEW_TEXT' in '$INPUT_FILE' and saved
+
+ Make the script executable by running the following command in the terminal
+chmod +x replace_text.sh
+
+
+Run the script by providing the input file name, the text to be replaced, and the new text as arguments. For example:
+
+./replace_text.sh example.txt old_text new_text
+
+
+
+
+
+                                                                                                                                                      

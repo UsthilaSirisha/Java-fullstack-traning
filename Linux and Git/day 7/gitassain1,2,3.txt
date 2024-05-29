@@ -1,0 +1,183 @@
+Assignment 1: Initialize a new Git repository in a directory of your choice. 
+Add a simple text file to the repository and make the first commit.
+ 
+
+
+To initialize a new Git repository, add a simple text file, and make the first commit, follow these steps:
+
+Open a Terminal and navigate to the directory where you want to initialize the new Git repository. If the directory does not exist yet, create it 
+first. For example, to create and navigate to a directory called my_git_repo, you can use:
+
+
+mkdir my_git_repo
+cd my_git_repo
+Initialize the Git repository by running the following command:
+
+
+git init
+This command creates a new subdirectory named .git that contains all the necessary files for the repository.
+
+Create a simple text file. You can use any text editor to create a file, or use a command line text editor like nano or vim. Alternatively,
+ you can create a file directly from the terminal. For example, to create a file named example.txt, you can use:
+
+
+echo "This is a simple text file." > example.txt
+Add the file to the staging area using the git add command:
+
+
+git add example.txt
+This command stages the file, indicating that you want to include it in the next commit.
+
+Make the first commit with a commit message describing the changes. Use the git commit command:
+
+
+git commit -m "Initial commit: Added example.txt"
+This command records the changes to the repository with a message describing the commit.
+
+Here is a summary of the commands:
+
+
+mkdir my_git_repo
+cd my_git_repo
+git init
+echo "This is a simple text file." > example.txt
+git add example.txt
+git commit -m "Initial commit: Added example.txt"
+Following these steps, you will have initialized a new Git repository, added a simple text file, and made the first commit.
+
+
+
+
+Assignment 2: Branch Creation and Switching
+Create a new branch named 'feature' and switch to it. Make changes in the 'feature' branch and commit them.
+ 
+
+To create a new branch named 'feature', switch to it, make changes, and commit them, follow these steps:
+
+Open your Terminal and navigate to the Git repository directory if you're not already there.
+
+# code
+cd my_git_repo
+Create a new branch named 'feature' using the git branch command:
+
+# code
+git branch feature
+Switch to the 'feature' branch using the git checkout command:
+
+# code
+git checkout feature
+Alternatively, you can combine the branch creation and switching into one command using git checkout -b:
+
+#code
+git checkout -b feature
+Make changes in the 'feature' branch. For example, you can add a new line to the example.txt file. You can use a text editor or a 
+command line utility like echo to append a line. Here's an example of using echo:
+
+#code
+echo "This is a new line added in the feature branch." >> example.txt
+Stage the changes using the git add command:
+
+# code
+git add example.txt
+Commit the changes with a descriptive commit message using the git commit command:
+
+# code
+git commit -m "Added a new line in the feature branch"
+Here is a summary of the commands to create the branch, switch to it, make changes, and commit them:
+
+#code
+cd my_git_repo
+git checkout -b feature
+echo "This is a new line added in the feature branch." >> example.txt
+git add example.txt
+git commit -m "Added a new line in the feature branch"
+Following these steps, you will have created a new branch named 'feature', switched to it, made changes in the branch, and committed those changes.
+
+
+
+Assignment 3: Feature Branches and Hotfixes
+Create a 'hotfix' branch to fix an issue in the main code. Merge the 'hotfix' branch into 'main' ensuring that the issue is resolved.
+
+
+To create a 'hotfix' branch to fix an issue in the main code, merge the 'hotfix' branch into 'main', and ensure that the issue is resolved, follow these steps:
+
+Open your Terminal and navigate to the Git repository directory if you're not already there.
+
+# code
+cd my_git_repo
+Create a new branch named 'hotfix' using the git branch command:
+
+# code
+git branch hotfix
+Switch to the 'hotfix' branch using the git checkout command:
+
+# code
+git checkout hotfix
+Alternatively, you can combine the branch creation and switching into one command using git checkout -b:
+
+# code
+git checkout -b hotfix
+Make changes to fix the issue. For example, let's fix a typo in example.txt. You can open the file in a text editor 
+and make the necessary changes. Here, we'll use sed to replace a word:
+
+# code
+sed -i 's/simple text file/simple and corrected text file/' example.txt
+Stage the changes using the git add command:
+
+# code
+git add example.txt
+Commit the changes with a descriptive commit message using the git commit command:
+
+# code
+git commit -m "Fixed issue: corrected text in example.txt"
+Switch back to the 'main' branch using the git checkout command:
+
+# code
+git checkout main
+Merge the 'hotfix' branch into 'main' using the git merge command:
+
+# code
+git merge hotfix
+Ensure the issue is resolved by checking the contents of example.txt. You can use cat to view the file:
+
+# code
+cat example.txt
+The file should reflect the changes made in the 'hotfix' branch.
+
+Optional: Delete the 'hotfix' branch if you no longer need it:
+
+# code
+git branch -d hotfix
+Here is a summary of the commands to create the 'hotfix' branch, fix the issue, and merge it back into 'main':
+
+# code
+cd my_git_repo
+git checkout -b hotfix
+sed -i 's/simple text file/simple and corrected text file/' example.txt
+git add example.txt
+git commit -m "Fixed issue: corrected text in example.txt"
+git checkout main
+git merge hotfix
+cat example.txt
+git branch -d hotfix
+Following these steps, you will have created a 'hotfix' branch, fixed an issue, merged the 'hotfix' branch into 'main', and ensured that the issue is resolved.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
